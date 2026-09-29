@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Risk Assessment</title>
+  <meta name="description" content="Educational framework that scores social-media privacy exposure from self-reported settings. No scraping, no personal data collected.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>Privacy Risk Assessment</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Overview</a>
+        <a href="assessment.html">Assessment</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="checklist.html">Checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Social media privacy risk assessment</p>
+          <h1>What can a <span class="marker">stranger</span> learn from your profile?</h1>
+          <p class="lede">Answer 53 questions about your privacy settings and habits. You get a 0–100 exposure score, a score for each of ten risk categories, and a prioritised list of fixes. You can also see how much each fix would lower your score.</p>
+          <p class="lede">You never type a phone number, address or password. Every question asks only <em>whether</em> something is visible or enabled.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="assessment.html">Start privacy assessment</a>
+            <a class="btn btn-secondary" href="dashboard.html">View dashboard</a>
+          </div>
+        </div>
+
+        <figure class="card specimen" aria-labelledby="specimen-caption">
+          <div class="specimen-head">
+            <strong id="specimen-caption">Fictional demo profile</strong>
+            <span class="mono">SYN-DEMO · not a real person</span>
+          </div>
+          <ul class="specimen-rows" id="specimen-rows">
+            <li><span class="field">Phone number</span><span class="state" data-kind="exposure"></span></li>
+            <li><span class="field">Full birth date</span><span class="state" data-kind="exposure"></span></li>
+            <li><span class="field">Current city</span><span class="state" data-kind="exposure"></span></li>
+            <li><span class="field">Live location</span><span class="state" data-kind="exposure"></span></li>
+            <li><span class="field">Travel plans</span><span class="state" data-kind="exposure"></span></li>
+            <li><span class="field">Tag review</span><span class="state" data-kind="control"></span></li>
+            <li><span class="field">Multi-factor authentication</span><span class="state" data-kind="control"></span></li>
+          </ul>
+          <div class="specimen-foot">
+            <label class="switch"><input type="checkbox" id="specimen-toggle"> After privacy review</label>
+            <div aria-live="polite"><span class="specimen-score" id="specimen-score">82<small>/100</small></span> <span id="specimen-level"></span></div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">Privacy ≠ security</p>
+        <h2>A strong password doesn't hide your birthday</h2>
+        <p class="lede">These are related but separate problems, so the framework scores both.</p>
+        <div class="versus">
+          <div class="card">
+            <h3>Privacy</h3>
+            <p class="muted">Controls how personal information is collected, shared, exposed and used.</p>
+            <ul>
+              <li>Who can see your phone number, birthday or city</li>
+              <li>Whether posts reveal where you are right now</li>
+              <li>What old posts and tags say about you</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Security</h3>
+            <p class="muted">Protects systems, accounts and information from unauthorised access or misuse.</p>
+            <ul>
+              <li>Multi-factor authentication and unique passwords</li>
+              <li>Login alerts and reviewing active sessions</li>
+              <li>Refusing to share verification codes</li>
+            </ul>
+          </div>
+        </div>
+        <p class="callout">An account can have MFA and a unique password and still publish a full birth date, a workplace and live location to everyone. <strong>Strong account security is not the same as strong privacy.</strong></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">Ten risk categories · weights sum to 100%</p>
+        <h2>What the score is made of</h2>
+        <p class="lede">Each category gets its own 0–100 score. Your overall score is the weighted average of the ten. The weights are teaching assumptions, not a validated model.</p>
+        <div class="category-grid" id="category-grid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">How an assessment runs</p>
+        <h2>From answers to a report</h2>
+        <ol class="pipeline">
+          <li><strong>Questionnaire</strong><span>53 questions, answered with fixed choices</span></li>
+          <li><strong>Validation</strong><span>Only allowed answer codes are accepted</span></li>
+          <li><strong>Feature extraction</strong><span>Each answer becomes a 0–1 risk value</span></li>
+          <li><strong>Category scoring</strong><span>A weighted score for each of the ten categories</span></li>
+          <li><strong>Overall score</strong><span>A weighted average, then Low / Moderate / High / Critical</span></li>
+          <li><strong>Findings</strong><span>Risky answers ranked by severity</span></li>
+          <li><strong>Recommendations</strong><span>Immediate, important and good-practice fixes</span></li>
+          <li><strong>Report</strong><span>Printable HTML or PDF with no personal data</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">Privacy by design</p>
+        <h2>What this app never collects</h2>
+        <ul class="not-collected">
+          <li><span class="redacted" aria-hidden="true"></span> Phone numbers or email addresses</li>
+          <li><span class="redacted" aria-hidden="true"></span> Home addresses or exact locations</li>
+          <li><span class="redacted" aria-hidden="true"></span> Birth dates</li>
+          <li><span class="redacted" aria-hidden="true"></span> Passwords or verification codes</li>
+          <li><span class="redacted" aria-hidden="true"></span> Names, usernames or profile links</li>
+          <li><span class="redacted" aria-hidden="true"></span> Your questionnaire answers (they are scored and discarded)</li>
+        </ul>
+        <p class="muted small mt">Results are saved only if you tick "Save my anonymous result". Even then, only scores and finding types are stored, and they are deleted after 30 days or whenever you delete them.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>This project is for defensive cybersecurity and privacy education. It uses synthetic or voluntarily provided assessment responses and does not scrape, track or profile real social-media users.</p>
+      <p>The score is an educational estimate from self-reported answers. It does not guarantee that an account will or will not be compromised.</p>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

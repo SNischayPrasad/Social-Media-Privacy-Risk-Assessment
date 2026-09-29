@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Assessment</title>
+  <meta name="description" content="53-question social-media privacy questionnaire with category scoring, findings, recommendations and an improvement simulator.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>Privacy Risk Assessment</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Overview</a>
+        <a href="assessment.html">Assessment</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="checklist.html">Checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ============================================================ QUESTIONNAIRE -->
+    <div id="form-view">
+      <div class="page-head">
+        <p class="eyebrow">53 questions · about 8 minutes</p>
+        <h1>Privacy assessment</h1>
+        <p class="lede">Answer based on your main social-media account. If you are unsure about a setting, choose "Not sure". It counts as moderate risk, because a setting you can't confirm isn't protecting you.</p>
+        <div class="btn-row">
+          <button class="btn btn-secondary" type="button" id="demo-btn">Use fictional demo answers</button>
+          <button class="btn btn-ghost" type="button" id="clear-btn">Clear my answers</button>
+        </div>
+      </div>
+
+      <div class="assess-layout">
+        <aside class="card steps" aria-label="Categories">
+          <ol id="steps"></ol>
+          <div class="steps-foot">
+            <div class="small"><strong id="answered-count">0</strong> of <span id="total-count">53</span> answered</div>
+            <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+          </div>
+        </aside>
+
+        <section aria-live="polite">
+          <div class="cat-head">
+            <p class="eyebrow" id="cat-eyebrow"></p>
+            <h2 id="cat-title">Loading questions…</h2>
+            <p class="muted" id="cat-desc"></p>
+          </div>
+          <div id="questions"></div>
+
+          <div id="submit-area" hidden>
+            <label class="consent card">
+              <input type="checkbox" id="store-consent">
+              <span><strong>Save my anonymous result</strong> (optional). This stores only the scores and finding types, never your answers, so the result counts toward the dashboard and gets a shareable ID. It's deleted after 30 days, and you can delete it sooner.</span>
+            </label>
+          </div>
+
+          <div class="form-foot">
+            <button class="btn btn-secondary" type="button" id="prev-btn">Previous category</button>
+            <div class="btn-row">
+              <button class="btn btn-primary" type="button" id="next-btn">Next category</button>
+              <button class="btn btn-primary" type="button" id="submit-btn" hidden>Calculate my privacy score</button>
+            </div>
+          </div>
+          <p class="notice error" id="form-error" hidden></p>
+        </section>
+      </div>
+    </div>
+
+    <!-- ============================================================ RESULTS -->
+    <div id="results" class="results" hidden>
+      <div class="page-head">
+        <p class="eyebrow" id="result-meta"></p>
+        <h1>Your privacy risk assessment</h1>
+      </div>
+
+      <div class="card score-panel">
+        <div>
+          <div class="score-number" id="score-number"></div>
+          <div id="score-level"></div>
+        </div>
+        <div>
+          <p id="score-meaning" class="lede"></p>
+          <div class="scale" aria-hidden="true">
+            <div class="scale-track"><span></span><span></span><span></span><span></span></div>
+            <div class="scale-pointer"><i id="scale-pointer"></i></div>
+            <div class="scale-labels"><span>Low 0–20</span><span>Moderate 21–40</span><span>High 41–70</span><span>Critical 71–100</span></div>
+          </div>
+          <p class="disclaimer" id="result-disclaimer"></p>
+        </div>
+      </div>
+
+      <div class="stats" id="stats"></div>
+
+      <div class="stack">
+        <div class="card chart-wrap">
+          <div class="panel-title">
+            <h2>Category risk scores</h2>
+            <div class="legend"><span><i class="lg-low"></i>Low</span><span><i class="lg-mod"></i>Moderate</span><span><i class="lg-high"></i>High</span><span><i class="lg-crit"></i>Critical</span></div>
+          </div>
+          <p class="muted small">Higher means more exposure. Each bar's colour shows its risk level.</p>
+          <div class="chart-box"><canvas id="category-chart" aria-label="Bar chart of category risk scores" role="img"></canvas></div>
+          <details class="chart-fallback"></details>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="panel-title"><h2>Top findings</h2><span class="muted small" id="finding-total"></span></div>
+            <ol class="findings" id="top-findings"></ol>
+            <details class="chart-fallback" id="all-findings-wrap"><summary>Show all findings</summary><ol class="findings" id="all-findings"></ol></details>
+          </div>
+          <div class="card">
+            <div class="panel-title"><h2>Security controls</h2><span class="muted small" id="controls-total"></span></div>
+            <p class="muted small">Security controls protect the account itself. They are separate from what you make visible.</p>
+            <table class="data" id="controls-table"></table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="panel-title"><h2>Recommendations</h2><span class="muted small">Based on your findings, most urgent first</span></div>
+          <div class="recs" id="recommendations"></div>
+        </div>
+
+        <div class="card" id="simulator">
+          <div class="panel-title"><h2>What if I improve my settings?</h2></div>
+          <p class="muted">Pick the findings you would fix. The simulator sets each one to its safest answer and re-runs the same scoring engine. Nothing is saved.</p>
+          <div class="sim-grid">
+            <div>
+              <div class="btn-row">
+                <button class="btn btn-ghost" type="button" id="sim-top">Select top 5</button>
+                <button class="btn btn-ghost" type="button" id="sim-all">Select all</button>
+                <button class="btn btn-ghost" type="button" id="sim-none">Clear</button>
+              </div>
+              <ul class="sim-options mt" id="sim-options"></ul>
+              <div class="btn-row mt"><button class="btn btn-primary" type="button" id="sim-run">Simulate selected changes</button></div>
+            </div>
+            <div id="sim-result" aria-live="polite">
+              <div class="empty card"><p>Select one or more findings, then choose <strong>Simulate selected changes</strong> to see your new score.</p></div>
+            </div>
+          </div>
+          <div class="chart-wrap mt" id="sim-chart-wrap" hidden>
+            <h3>Category scores before and after</h3>
+            <div class="chart-box"><canvas id="sim-chart" aria-label="Before and after category scores" role="img"></canvas></div>
+            <details class="chart-fallback"></details>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="panel-title"><h2>Report and next steps</h2></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button" id="report-open">Open printable report</button>
+            <button class="btn btn-secondary" type="button" id="report-download">Download report (HTML)</button>
+            <a class="btn btn-secondary" href="checklist.html">Open privacy checklist</a>
+            <a class="btn btn-secondary" href="dashboard.html">View dashboard</a>
+            <button class="btn btn-ghost" type="button" id="retake-btn">Edit answers</button>
+          </div>
+          <p class="muted small mt">To save as PDF, open the report and choose Print → Save as PDF. The report contains scores and finding types only.</p>
+          <div id="stored-box" class="notice mt" hidden></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Educational privacy-risk framework. Scores come from your self-reported answers, and the weights are teaching assumptions. The result does not guarantee that an account will or will not be compromised.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg/P5HG5lF1urn4" crossorigin="anonymous"></script>
+  <script src="js/common.js"></script>
+  <script src="js/assessment.js"></script>
+</body>
+</html>
