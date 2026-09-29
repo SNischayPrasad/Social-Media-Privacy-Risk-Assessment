@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Secrets / local configuration
+.env
+
+# Local database (may contain stored assessments) and runtime files
+instance/
+*.db
+*.sqlite3
+
+# Generated reports (keep the demo report for the portfolio)
+reports/*
+!reports/.gitkeep
+!reports/demo_privacy_report.html
+
+# Personal images used with the metadata viewer - never commit them
+tools/*.jpg
+tools/*.jpeg
+tools/*.png
+tools/*.heic
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

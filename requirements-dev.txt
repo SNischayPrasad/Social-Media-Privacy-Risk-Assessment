@@ -1,0 +1,4 @@
+# Development-only tools (not needed to run the app)
+-r requirements.txt
+# Screenshot automation (tools/capture_screenshots.py) - drives your installed Google Chrome
+playwright>=1.45

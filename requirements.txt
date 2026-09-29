@@ -1,0 +1,8 @@
+# Web framework (backend API + serves the static frontend)
+Flask>=3.0,<4.0
+# Loads settings from a local .env file
+python-dotenv>=1.0
+# Optional: local photo metadata viewer (tools/photo_metadata_viewer.py)
+Pillow>=10.0
+# Automated tests
+pytest>=8.0
